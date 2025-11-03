@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Development Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #1557b0;
+            --secondary: #34a853;
+            --accent: #ea4335;
+            --warning: #fbbc04;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --text: #202124;
+            --text-light: #5f6368;
+            --border: #dadce0;
+        }
+
+        body {
+            font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            font-weight: 500;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text);
+            margin: 5px 0;
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+            min-height: calc(100vh - 64px);
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.75rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.95;
+        }
+
+        .hero .roles {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+        }
+
+        .quick-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .quick-link {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background 0.2s;
+            backdrop-filter: blur(10px);
+        }
+
+        .quick-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Content Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .section-intro {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            max-width: 800px;
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Button Navigation */
+        .year-nav {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .year-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--white);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .year-btn:hover {
+            background: var(--light-bg);
+            box-shadow: 0 1px 3px rgba(60,64,67,.3);
+        }
+
+        .year-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Accordion */
+        .accordion {
+            margin: 1.5rem 0;
+        }
+
+        .accordion-item {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 1.25rem 1.5rem;
+            background: var(--light-bg);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .accordion-header:hover {
+            background: #e8eaed;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s;
+            font-size: 1.25rem;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 2000px;
+        }
+
+        .accordion-body {
+            padding: 1.5rem;
+            background: white;
+        }
+
+        .accordion-body ul {
+            margin-left: 1.5rem;
+            line-height: 2;
+        }
+
+        .accordion-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Artifacts Section */
+        .artifacts {
+            background: var(--light-bg);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .artifacts-title {
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .artifact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 0.25rem;
+            font-size: 0.95rem;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .artifact-link:hover {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 1px 3px rgba(60,64,67,.3);
+        }
+
+        /* Year Section */
+        .year-section {
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+
+        .year-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .year-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .year-header h2 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .year-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* Competency Grid */
+        .competency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .competency-item {
+            padding: 1rem 1.25rem;
+            background: var(--light-bg);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Downloads */
+        .downloads {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .download-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .download-btn:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 1px 3px rgba(60,64,67,.3);
+        }
+
+        /* Project Cards */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 1px 3px 0 rgba(60,64,67,.3), 0 4px 8px 3px rgba(60,64,67,.15);
+            transform: translateY(-2px);
+        }
+
+        .project-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .project-header h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: white;
+            margin: 0;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-type {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Equity Cards */
+        .equity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .equity-card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .equity-card h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .back-btn:hover {
+            background: var(--light-bg);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(60,64,67,.3);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .year-nav {
+                flex-direction: column;
+            }
+
+            .year-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">📚 PDP Portfolio</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">🏠 Home</a></li>
+                <li><a href="#about" class="nav-link">👤 About</a></li>
+                <li><a href="#teaching" class="nav-link">👩‍🏫 Teaching</a></li>
+                <li><a href="#scholarship" class="nav-link">🧠 Scholarship</a></li>
+                <li><a href="#continuing-prep" class="nav-link">🎓 Preparation</a></li>
+                <li><a href="#student-growth" class="nav-link">🌱 Student Growth</a></li>
+                <li><a href="#service" class="nav-link">🛠️ Service</a></li>
+                <li><a href="#equity" class="nav-link">🧩 Equity & Inclusion</a></li>
+                <li><a href="#contact" class="nav-link">📬 Contact</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <div class="hero">
+            <h1>Bridging Data, Design, and Human-Centered Strategy</h1>
+            <p class="subtitle">Assistant Professor • Product Owner • Analytics Storyteller • AI Workflow Strategist</p>
+            
+            <div class="quick-links">
+                <a href="#teaching" class="quick-link">👩‍🏫 Teaching</a>
+                <a href="#scholarship" class="quick-link">📚 Scholarship / Research</a>
+                <a href="#publications" class="quick-link">📈 Publications</a>
+                <a href="#equity" class="quick-link">🧩 Equity & Inclusion</a>
+                <a href="#contact" class="quick-link">📬 Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">👤 About</h2>
+            </div>
+            
+            <div class="card">
+                <h3>Short Bio</h3>
+                <p>I bridge the worlds of data, design, and human-centered strategy to create meaningful impact in higher education and beyond. My research intersects technology, behavior change, and equitable access, with a primary focus on digital health interventions, AI-driven user experience, and analytics for improvement.</p>
+                <p style="margin-top: 1rem;">As an Assistant Professor, Product Owner, and Analytics Storyteller, I bring technical expertise together with deep empathy for user needs. Whether in the classroom, conducting research, or consulting with organizations, my approach remains grounded in understanding people first and leveraging technology to amplify human potential.</p>
+            </div>
+
+            <div class="card">
+                <h3>Core Competencies</h3>
+                <div class="competency-grid">
+                    <div class="competency-item">✅ Product Ownership</div>
+                    <div class="competency-item">✅ BI & Data Storytelling</div>
+                    <div class="competency-item">✅ UX Research & Design</div>
+                    <div class="competency-item">✅ AI Workflow Automation</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Downloadables</h3>
+                <div class="downloads">
+                    <a href="#" class="download-btn">📄 CV (PDF)</a>
+                    <a href="#portfolio" class="download-btn">🌐 Portfolio Link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEACHING PAGE -->
+    <div id="teaching" class="page">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">👩‍🏫 Teaching</h2>
+                <p class="section-intro">
+                    My teaching emphasizes hands-on, project-based learning with a commitment to equity and inclusion. I utilize flipped classrooms, data storytelling dashboards, design sprints, and LMS-first delivery to prepare students for real-world challenges.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Teaching Philosophy</h3>
+                <p>I believe effective teaching bridges theory and practice, preparing students not just for their first job, but for lifelong learning in a rapidly changing technological landscape. My classroom emphasizes hands-on projects, critical thinking, and collaborative problem-solving with a commitment to equity and inclusion.</p>
+                <p style="margin-top: 1rem;"><strong>Modalities:</strong> Flipped classrooms • Data storytelling dashboards • Design sprints • LMS-first delivery</p>
+            </div>
+
+            <div class="year-nav">
+                <button class="year-btn active" onclick="showYearSection('teaching', 'spring-2023')">Spring 2023</button>
+                <button class="year-btn" onclick="showYearSection('teaching', 'ay-2023-24')">AY 2023–2024</button>
+                <button class="year-btn" onclick="showYearSection('teaching', 'ay-2024-25')">AY 2024–2025</button>
+                <button class="year-btn" onclick="showYearSection('teaching', 'ay-2025-26')">AY 2025–2026 Plan</button>
+            </div>
+
+            <!-- Spring 2023 -->
+            <div id="teaching-spring-2023" class="year-section active">
+                <div class="year-header">
+                    <h2>📂 Spring 2023</h2>
+                    <p class="year-subtitle">⏳ First full ramp year: launched design sprint format in BI classroom</p>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Research Development</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Participated in faculty development workshops</li>
+                                    <li>Selected research focus areas: AI feedback workflows & HCI in health</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Activities</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Reviewed latest lit on mobile health app UX & digital nudges</li>
+                                    <li>Drafted initial themes for upcoming conference submission</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Evidence Documents:</div>
+                    <a href="#" class="artifact-link">📄 Professional Development Plan_Report__SenaOkuboyejoAY 23.pdf</a>
+                    <a href="#" class="artifact-link">📘 Reading logs</a>
+                </div>
+            </div>
+
+            <!-- AY 2023-24 -->
+            <div id="scholarship-ay-2023-24" class="year-section">
+                <div class="year-header">
+                    <h2>📂 Scholarship / Research — AY 2023–2024</h2>
+                </div>
+
+                <div class="card">
+                    <p>This year prioritized actionable contributions to health informatics and UX, including completed conference papers, published pieces, and methodological skill growth.</p>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Publications & Conference Work</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Abstract submission to MWAIS</li>
+                                    <li>Paper drafted: "Digital Nudges for Better Sleep"</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Faculty Workshops / PD</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Attended SAP, Tableau, and DEI teaching-in-analytics workshops</li>
+                                    <li>Engaged in manuscript peer reviews</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Evidence Files:</div>
+                    <a href="#" class="artifact-link">📄 Professional Development Plan_ReportAY2024__SenaOkuboyejo24.pdf</a>
+                    <a href="#" class="artifact-link">📎 Slides from "Digital Health Tech" teacher workshop</a>
+                </div>
+            </div>
+
+            <!-- AY 2024-25 -->
+            <div id="scholarship-ay-2024-25" class="year-section">
+                <div class="year-header">
+                    <h2>📂 Scholarship / Research — AY 2024–2025</h2>
+                </div>
+
+                <div class="card">
+                    <p>This year involved strategic focus on AI + UX, with a research pipeline developed across peer-reviewed drafting, mentoring, and design sprint experimentation.</p>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Research Outputs</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Submitted full paper to ICT4A Conference</li>
+                                    <li>Completed peer review for journal</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Artifacts</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Poster: "AI in Classroom Workflow" — embed poster image (.PDF)</li>
+                                    <li>Workshop materials on empathy-driven design</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Evidence:</div>
+                    <a href="#" class="artifact-link">📄 Professional Development Report AY2425.pdf</a>
+                </div>
+            </div>
+
+            <!-- AY 2025-26 -->
+            <div id="scholarship-ay-2025-26" class="year-section">
+                <div class="year-header">
+                    <h2>📂 Scholarship / Research — AY 2025–2026 Plan</h2>
+                </div>
+
+                <div class="card">
+                    <p>The upcoming cycle aims to publish two complete manuscripts and mentor student co-authors through conference paper submissions.</p>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Goals</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Publish: Digital Nudges for Improved Medication Behavior</li>
+                                    <li>Submit: AI Workflow in Faculty Work — Ed Tech Journal</li>
+                                    <li>Mentor 1–2 students on co-authored work</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Conferences & Journals (Target)</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>CHI, AMCIS, HCI International</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Evidence:</div>
+                    <a href="#" class="artifact-link">📄 Professional Development Report AY2526__SenaOkuboyejo.pdf</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTINUING PREPARATION PAGE -->
+    <div id="continuing-prep" class="page">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">🎓 Continuing Preparation & Study</h2>
+                <p class="section-intro">
+                    As a lifelong learner, my preparation includes technology certifications, instructional design PD, pedagogy advancements, and faculty leadership training. I target skills that enrich student learning and drive future-ready curricula.
+                </p>
+            </div>
+
+            <div class="year-nav">
+                <button class="year-btn active" onclick="showYearSection('continuing-prep', 'spring-2023')">Spring 2023</button>
+                <button class="year-btn" onclick="showYearSection('continuing-prep', 'ay-2023-24')">AY 2023–2024</button>
+                <button class="year-btn" onclick="showYearSection('continuing-prep', 'ay-2024-25')">AY 2024–2025</button>
+                <button class="year-btn" onclick="showYearSection('continuing-prep', 'ay-2025-26')">AY 2025–2026 Plan</button>
+            </div>
+
+            <!-- Spring 2023 -->
+            <div id="continuing-prep-spring-2023" class="year-section active">
+                <div class="year-header">
+                    <h2>📂 Spring 2023</h2>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Professional Development Activities</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Completed LinkedIn Learning series on BI integration</li>
+                                    <li>Participated in "Data Equity in Action" workshop</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Evidence:</div>
+                    <a href="#" class="artifact-link">🗂️ Professional Development Plan_Report__SenaOkuboyejoAY 23.pdf</a>
+                </div>
+            </div>
+
+            <!-- AY 2023-24 -->
+            <div id="continuing-prep-ay-2023-24" class="year-section">
+                <div class="year-header">
+                    <h2>📂 AY 2023–2024</h2>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Professional Development Activities</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Earned Tableau Explorer certification</li>
+                                    <li>Continued SAP Experience with SAP UA exchange</li>
+                                    <li>Attended NED faculty-led DEI workshops</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Evidence:</div>
+                    <a href="#" class="artifact-link">🗂️ Professional Development Plan_ReportAY2024__SenaOkuboyejo24.pdf</a>
+                    <a href="#" class="artifact-link">🎓 Certificate images/screenshots</a>
+                </div>
+            </div>
+
+            <!-- AY 2024-25 -->
+            <div id="continuing-prep-ay-2024-25" class="year-section">
+                <div class="year-header">
+                    <h2>📂 AY 2024–2025</h2>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Professional Development Activities</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Completed CSPO (Certified Scrum Product Owner) credential</li>
+                                    <li>Received formal training via Google AI in Education certification</li>
+                                    <li>Studied Figma-to-Teaching UI workflows (self-study)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Evidence:</div>
+                    <a href="#" class="artifact-link">🗂️ Professional Development Report AY2425.pdf</a>
+                    <a href="#" class="artifact-link">📄 Certificate holdings (JPG or PDF)</a>
+                </div>
+            </div>
+
+            <!-- AY 2025-26 -->
+            <div id="continuing-prep-ay-2025-26" class="year-section">
+                <div class="year-header">
+                    <h2>📂 AY 2025–2026 Plan</h2>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Goals</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Attend workshops on AI assessment, micro-learning design</li>
+                                    <li>Participate in faculty DEI book club series</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Evidence:</div>
+                    <a href="#" class="artifact-link">🗂️ Professional Development Report AY2526__SenaOkuboyejo.pdf</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STUDENT GROWTH PAGE -->
+    <div id="student-growth" class="page">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">🌱 Contribution to Student Growth & Development</h2>
+                <p class="section-intro">
+                    I support student learning and identity formation as both an instructor and mentor — through advising, curriculum-based experiential learning, and professional mentoring experiences.
+                </p>
+            </div>
+
+            <div class="year-nav">
+                <button class="year-btn active" onclick="showYearSection('student-growth', 'spring-2023')">Spring 2023</button>
+                <button class="year-btn" onclick="showYearSection('student-growth', 'ay-2023-24')">AY 2023–2024</button>
+                <button class="year-btn" onclick="showYearSection('student-growth', 'ay-2024-25')">AY 2024–2025</button>
+            </div>
+
+            <!-- Spring 2023 -->
+            <div id="student-growth-spring-2023" class="year-section active">
+                <div class="year-header">
+                    <h2>📂 Spring 2023</h2>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Activities</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Supported students in "Data Capstone" on healthcare dashboard topics</li>
+                                    <li>Guided reflective learning strategies with feedback loops</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Evidence:</div>
+                    <a href="#" class="artifact-link">🗂️ Professional Development Plan_Report__SenaOkuboyejoAY 23.pdf</a>
+                </div>
+            </div>
+
+            <!-- AY 2023-24 -->
+            <div id="student-growth-ay-2023-24" class="year-section">
+                <div class="year-header">
+                    <h2>📂 AY 2023–2024</h2>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Activities</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Co-developed Student Scholars workshop</li>
+                                    <li>Guided 4 students to complete real-world BI projects</li>
+                                    <li>Started "career reflection panel" for capstone</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Evidence:</div>
+                    <a href="#" class="artifact-link">🗂️ Professional Development Plan_ReportAY2024__SenaOkuboyejo24.pdf</a>
+                </div>
+            </div>
+
+            <!-- AY 2024-25 -->
+            <div id="student-growth-ay-2024-25" class="year-section">
+                <div class="year-header">
+                    <h2>📂 AY 2024–2025</h2>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Activities</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Advised DBA student on literature review in health informatics</li>
+                                    <li>Helped pilot Peer Data Review in MIS 310</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Evidence:</div>
+                    <a href="#" class="artifact-link">🗂️ Professional Development Report AY2425.pdf</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICE PAGE -->
+    <div id="service" class="page">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">🛠️ Service</h2>
+                <p class="section-intro">
+                    Service has been a cornerstone of my academic and professional journey, with dedicated involvement in departmental committees, DEI initiatives, and student support networks.
+                </p>
+            </div>
+
+            <div class="year-nav">
+                <button class="year-btn active" onclick="showYearSection('service', 'spring-2023')">Spring 2023</button>
+                <button class="year-btn" onclick="showYearSection('service', 'ay-2023-24')">AY 2023–2024</button>
+                <button class="year-btn" onclick="showYearSection('service', 'ay-2024-25')">AY 2024–2025</button>
+                <button class="year-btn" onclick="showYearSection('service', 'ay-2025-26')">AY 2025–2026 Plan</button>
+            </div>
+
+            <!-- Spring 2023 -->
+            <div id="service-spring-2023" class="year-section active">
+                <div class="year-header">
+                    <h2>📂 Spring 2023</h2>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Activities</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Volunteer at MWAIS (Midwest AIS)</li>
+                                    <li>Assisted with student resume review program</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Evidence:</div>
+                    <a href="#" class="artifact-link">🗂️ Professional Development Plan_Report__SenaOkuboyejoAY 23.pdf</a>
+                </div>
+            </div>
+
+            <!-- AY 2023-24 -->
+            <div id="service-ay-2023-24" class="year-section">
+                <div class="year-header">
+                    <h2>📂 AY 2023–2024</h2>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Activities</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>College of Management representative at DEI Faculty Series</li>
+                                    <li>Served on Faculty Development, NED, and several search committees</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Evidence:</div>
+                    <a href="#" class="artifact-link">🗂️ Professional Development Plan_ReportAY2024__SenaOkuboyejo24.pdf</a>
+                </div>
+            </div>
+
+            <!-- AY 2024-25 -->
+            <div id="service-ay-2024-25" class="year-section">
+                <div class="year-header">
+                    <h2>📂 AY 2024–2025</h2>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Activities</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Co-chaired ERP faculty search committee</li>
+                                    <li>Presented in Holistic Equity Circle for faculty</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Evidence:</div>
+                    <a href="#" class="artifact-link">🗂️ Professional Development Report AY2425.pdf</a>
+                </div>
+            </div>
+
+            <!-- AY 2025-26 -->
+            <div id="service-ay-2025-26" class="year-section">
+                <div class="year-header">
+                    <h2>📂 AY 2025–2026 Plan</h2>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Goals</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Lead new AI curriculum review team</li>
+                                    <li>Mentor faculty for DEI-informed assessment design</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Evidence:</div>
+                    <a href="#" class="artifact-link">🗂️ Professional Development Report AY2526__SenaOkuboyejo.pdf</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EQUITY & INCLUSION PAGE -->
+    <div id="equity" class="page">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">🧩 Equity & Inclusion Initiatives</h2>
+                <p class="section-intro">
+                    Equity-centered teaching is core to my MIS pedagogy, embedding data justice, narrative framing, and inclusive practices into all project-based journeys. Here are a few of my highlighted initiatives.
+                </p>
+            </div>
+
+            <div class="equity-grid">
+                <div class="equity-card">
+                    <h3>🎯 Data Detectives — Mission for Equity</h3>
+                    <p>An analytics project investigating educational equity through data exploration, pattern recognition, and storytelling. Students use business intelligence tools to uncover systemic inequities and propose data-driven solutions.</p>
+                </div>
+
+                <div class="equity-card">
+                    <h3>🔄 AI-in-the-Classroom Checklist for Bias</h3>
+                    <p>A comprehensive framework for evaluating AI tools used in educational settings, ensuring they promote fairness, transparency, and equitable access for all students.</p>
+                </div>
+
+                <div class="equity-card">
+                    <h3>🏛️ DEI Case Sprint — Inclusive Intake Design</h3>
+                    <p>A rapid UX design sprint focused on redesigning healthcare intake processes to be more accessible, compassionate, and culturally responsive for diverse patient populations.</p>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 2rem;">
+                <h3>Additional Resources</h3>
+                <div class="artifacts">
+                    <a href="#" class="artifact-link">📄 Equity-based case study PDF</a>
+                    <a href="#" class="artifact-link">📊 Slides from "Data Equity and Applied Analytics" session</a>
+                    <a href="#" class="artifact-link">💬 Student reflection excerpts on inclusion themes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PUBLICATIONS PAGE -->
+    <div id="publications" class="page">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">📈 Publications & Conference Work</h2>
+                <p class="section-intro">
+                    A comprehensive list of my scholarly contributions, including journal articles, conference presentations, and workshop facilitations.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Conference Papers & Presentations</h3>
+                <ul style="margin-left: 1.5rem; line-height: 2; margin-top: 1rem;">
+                    <li>MWAIS Conference — Abstract presentation on digital health interventions</li>
+                    <li>ICT4A Conference — Full paper submission on AI workflows</li>
+                    <li>HCI International — Poster presentation on empathy-driven design</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Journal Articles (In Progress)</h3>
+                <ul style="margin-left: 1.5rem; line-height: 2; margin-top: 1rem;">
+                    <li>"Digital Nudges for Better Sleep" — Under review</li>
+                    <li>"AI Workflow in Faculty Work" — Preparing for Ed Tech Journal submission</li>
+                    <li>"Digital Nudges for Improved Medication Behavior" — In development</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Workshops & Guest Sessions</h3>
+                <ul style="margin-left: 1.5rem; line-height: 2; margin-top: 1rem;">
+                    <li>"Data Equity and Applied Analytics" — Guest session</li>
+                    <li>"Digital Health Tech" — Teacher workshop facilitation</li>
+                    <li>"Empathy-Driven Design" — Faculty development workshop</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PORTFOLIO PAGE -->
+    <div id="portfolio" class="page">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">📂 Portfolio</h2>
+                <p class="section-intro">
+                    Links to case study subpages and external showcases of my work across AI workflow automation, data storytelling, and UX design.
+                </p>
+            </div>
+
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🔗 AI Academic Assistant</h3>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-type">Workflow Automation Project</p>
+                        <p>Designing intelligent systems to streamline academic workflows and enhance productivity through AI integration, prompt engineering, and process automation.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🔗 Data Detectives</h3>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-type">Storytelling Analytics Project</p>
+                        <p>Using data analytics and business intelligence to uncover inequities and drive meaningful change in educational systems through compelling data narratives.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🔗 Healthcare Intake UX Sprint</h3>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-type">User Experience Design</p>
+                        <p>A rapid design sprint to transform the patient intake experience with human-centered design principles, improving accessibility and patient satisfaction.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">📬 Contact</h2>
+                <p class="section-intro">Let's collaborate!</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="card contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <a href="mailto:your-email@your-university.edu" class="contact-link">your-email@your-university.edu</a>
+                </div>
+
+                <div class="card contact-card">
+                    <div class="contact-icon">💼</div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">Connect on LinkedIn</a>
+                </div>
+
+                <div class="card contact-card">
+                    <div class="contact-icon">📅</div>
+                    <h3>Office Hours</h3>
+                    <a href="https://calendly.com/yourlink" target="_blank" class="contact-link">Schedule a Meeting</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Page Navigation
+        const pages = {};
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        document.querySelectorAll('.page').forEach(page => {
+            pages[page.id] = page;
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetPage = link.getAttribute('href').substring(1);
+                showPage(targetPage);
+            });
+        });
+
+        // Quick Links
+        document.querySelectorAll('.quick-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetPage = link.getAttribute('href').substring(1);
+                showPage(targetPage);
+            });
+        });
+
+        function showPage(pageId) {
+            // Hide all pages
+            Object.values(pages).forEach(page => page.classList.remove('active'));
+            
+            // Remove active from all nav links
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Show target page
+            if (pages[pageId]) {
+                pages[pageId].classList.add('active');
+            }
+            
+            // Set active nav link
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === `#${pageId}`) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Close mobile menu
+            document.getElementById('navLinks').classList.remove('active');
+        }
+
+        // Mobile Menu Toggle
+        document.getElementById('mobileToggle').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+
+        // Accordion Functionality
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const wasActive = item.classList.contains('active');
+            
+            // Close all accordions in the same container
+            const container = header.closest('.accordion');
+            container.querySelectorAll('.accordion-item').forEach(i => {
+                i.classList.remove('active');
+            });
+            
+            // Open clicked accordion if it wasn't active
+            if (!wasActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Year Section Navigation
+        function showYearSection(category, year) {
+            const sectionId = `${category}-${year}`;
+            
+            // Hide all year sections in this category
+            document.querySelectorAll(`[id^="${category}-"]`).forEach(section => {
+                if (section.classList.contains('year-section')) {
+                    section.classList.remove('active');
+                }
+            });
+            
+            // Show target section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            // Update button states
+            const parentPage = document.getElementById(category);
+            const buttons = parentPage.querySelectorAll('.year-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(year.replace(/-/g, '–'))) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Scroll to year section
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Download Button Handlers
+        document.querySelectorAll('.download-btn, .artifact-link').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // If it's a real link (not #), let it proceed normally
+                if (btn.getAttribute('href') !== '#') {
+                    return;
+                }
+                e.preventDefault();
+                alert('This would download the file. Connect to your actual file URLs.');
+            });
+        });
+
+        // Initialize - ensure home page is shown
+        window.addEventListener('DOMContentLoaded', () => {
+            showPage('home');
+        });
+
+        // Handle browser back/forward
+        window.addEventListener('popstate', (e) => {
+            const hash = window.location.hash.substring(1) || 'home';
+            showPage(hash);
+        });
+
+        // Update URL when navigating
+        const originalShowPage = showPage;
+        showPage = function(pageId) {
+            originalShowPage(pageId);
+            history.pushState({ page: pageId }, '', `#${pageId}`);
+        };
+    </script>
+</body>
+</html>
+                Courses Taught</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>MIS 310 – Decision Support Systems</li>
+                                    <li>MIS 380 – Business Intelligence & Analytics</li>
+                                    <li>MIS 499 – Capstone</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Evidence & Activities</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>✅ Introduced Tableau dashboards tied to social equity data</li>
+                                    <li>✅ Led SAP + Excel dual-platform assignments</li>
+                                    <li>✅ Embedded flipped teaching model with Loom demo walkthroughs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Artifacts:</div>
+                    <a href="#" class="artifact-link">📄 Professional Development Plan_Report__SenaOkuboyejoAY 23.pdf</a>
+                    <a href="#" class="artifact-link">📊 Student Dashboard Screenshot</a>
+                    <a href="#" class="artifact-link">📄 Assignment Prompt PDF</a>
+                </div>
+            </div>
+
+            <!-- AY 2023-24 -->
+            <div id="teaching-ay-2023-24" class="year-section">
+                <div class="year-header">
+                    <h2>📂 AY 2023–2024</h2>
+                    <p class="year-subtitle">🎨 Strengthened curriculum and introduced "Data Detectives" equity-first project</p>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Highlights</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Redesigned all core assignments to align with authentic DEI criteria</li>
+                                    <li>Added new rubric criteria for data narrative + ethical risk analysis</li>
+                                    <li>Developed comprehensive assessment framework for data storytelling competencies</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Artifacts:</div>
+                    <a href="#" class="artifact-link">📄 Professional Development Plan_ReportAY2024__SenaOkuboyejo24.pdf</a>
+                    <a href="#" class="artifact-link">📝 Data Detectives Rubric</a>
+                    <a href="#" class="artifact-link">📊 Sample Student Work Gallery</a>
+                </div>
+            </div>
+
+            <!-- AY 2024-25 -->
+            <div id="teaching-ay-2024-25" class="year-section">
+                <div class="year-header">
+                    <h2>📂 AY 2024–2025</h2>
+                    <p class="year-subtitle">🤖 Integrated AI-enabled instruction and LMS automation</p>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Highlights</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Introduced AI role-play graders for student reflection</li>
+                                    <li>Embedded Microsoft Power Automate for peer feedback loops</li>
+                                    <li>Added live-coded Excel streams for KPI drilling</li>
+                                    <li>Created automated workflows for assignment distribution and grading</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Artifacts:</div>
+                    <a href="#" class="artifact-link">📄 Professional Development Report AY2425.pdf</a>
+                    <a href="#" class="artifact-link">🎥 Embedded Presentation Video</a>
+                    <a href="#" class="artifact-link">📁 Virtual Sprint Board</a>
+                </div>
+            </div>
+
+            <!-- AY 2025-26 -->
+            <div id="teaching-ay-2025-26" class="year-section">
+                <div class="year-header">
+                    <h2>📂 AY 2025–2026 (Plan)</h2>
+                    <p class="year-subtitle">🚀 Expand faculty-scale equity dashboard teaching system</p>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Goals</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Launch v2.0 of "Data Detectives" as a toolkit for faculty community</li>
+                                    <li>Create AI teaching collaborators for feedback assistance</li>
+                                    <li>Develop open-source curriculum materials for wider adoption</li>
+                                    <li>Establish peer learning communities around equity-centered analytics</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifacts">
+                    <div class="artifacts-title">Artifacts:</div>
+                    <a href="#" class="artifact-link">🗂️ Professional Development Report AY2526__SenaOkuboyejo.pdf</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCHOLARSHIP PAGE -->
+    <div id="scholarship" class="page">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">🧠 Scholarship & Research</h2>
+                <p class="section-intro">
+                    My research intersects technology, behavior change, and equitable access. I focus primarily on digital health interventions, AI-driven user experience, and analytics for improvement. This section documents my scholarship progress, outputs, and goals across academic years.
+                </p>
+            </div>
+
+            <div class="year-nav">
+                <button class="year-btn active" onclick="showYearSection('scholarship', 'spring-2023')">Spring 2023</button>
+                <button class="year-btn" onclick="showYearSection('scholarship', 'ay-2023-24')">AY 2023–2024</button>
+                <button class="year-btn" onclick="showYearSection('scholarship', 'ay-2024-25')">AY 2024–2025</button>
+                <button class="year-btn" onclick="showYearSection('scholarship', 'ay-2025-26')">AY 2025–2026 Plan</button>
+            </div>
+
+            <!-- Spring 2023 -->
+            <div id="scholarship-spring-2023" class="year-section active">
+                <div class="year-header">
+                    <h2>📂 Scholarship / Research — Spring 2023</h2>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>
