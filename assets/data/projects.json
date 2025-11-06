@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Data Detectives \u2014 Equity in Analytics Education",
+    "summary": "Story-driven learning series integrating datasets, dashboards, ethics, and assessment templates.",
+    "tags": [
+      "Education",
+      "Analytics",
+      "Equity"
+    ],
+    "url": "/case-studies/data-detectives.html"
+  },
+  {
+    "title": "Faculty Workflow Hub \u2014 AI Academic Assistant",
+    "summary": "M365 + Power Automate + GPT to triage emails, log interactions, and generate weekly insights.",
+    "tags": [
+      "Automation",
+      "GenAI",
+      "M365"
+    ],
+    "url": "/case-studies/faculty-workflow-hub.html"
+  },
+  {
+    "title": "Health Tracking App \u2014 Consent & Ethics",
+    "summary": "Consent design that balances legal, ethical, and UX requirements; classroom deployment.",
+    "tags": [
+      "UX",
+      "Ethics",
+      "Health"
+    ],
+    "url": "/case-studies/health-app-consent.html"
+  }
+]
