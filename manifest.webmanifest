@@ -1,0 +1,15 @@
+{
+  "name": "Sena Ok \u2014 Portfolio",
+  "short_name": "Sena Ok",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b1020",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "/assets/img/og-cover.svg",
+      "sizes": "1200x630",
+      "type": "image/svg+xml"
+    }
+  ]
+}
