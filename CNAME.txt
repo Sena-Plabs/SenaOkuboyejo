@@ -1,1 +1,0 @@
-your-custom-domain.com  # rename to CNAME if you use a custom domain
