@@ -1,6 +1,6 @@
-# Sena Ok — Project Site (sena-plabs/senaokuboyejo)
+# Sena Ok — Project Site (sena-plabs/SenaOkuboyejo)
 
-Published at: **https://sena-plabs.github.io/senaokuboyejo/**
+Published at: **https://sena-plabs.github.io/SenaOkuboyejo/**
 
 **Quick publish**
 1. Create repo `senaokuboyejo` in the `sena-plabs` account.
